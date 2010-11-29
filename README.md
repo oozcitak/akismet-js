@@ -26,8 +26,8 @@ See [http://www.akismet.com/development/api/#comment-check](http://www.akismet.c
 
     akismet.checkSpam({ 
         user_ip: userip, 
-        permalink: 'http://www.my.blog.com/my-pos',
-        commnent_author: 'spammer',
+        permalink: 'http://www.my.blog.com/my-post',
+        comment_author: 'spammer',
         comment_content: 'spamming your comments'
       }, function(spam, status, headers) {
         if(spam)
@@ -39,6 +39,4 @@ See [http://www.akismet.com/development/api/#comment-check](http://www.akismet.c
 You can also send feedback to Akismet with `submitSpam` and `submitHam`. Their usage is the same as `checkSpam`.
 See [http://www.akismet.com/development/api/#submit-spam](http://www.akismet.com/development/api/#submit-spam)
 and [http://www.akismet.com/development/api/#submit-ham](http://www.akismet.com/development/api/#submit-ham)
-
-
 
