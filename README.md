@@ -8,7 +8,8 @@ Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.
 ### Usage:
 
 You need to [sign up](https://akismet.com/signup/) for an Akismet API key to use the API. Once you sign up, 
-it would be a good idea to verify your key. (See: http://www.akismet.com/development/api/#verify-key)
+it would be a good idea to verify your key. 
+See [http://www.akismet.com/development/api/#verify-key](http://www.akismet.com/development/api/#verify-key)
 
     var util = require('util'),
         akismet = require('akismet').client({ blog: 'http://my.blog.com', apiKey: 'myakismetapikey123' });
@@ -20,7 +21,8 @@ it would be a good idea to verify your key. (See: http://www.akismet.com/develop
         util.log('Unable to verify API key.');
     });
       
-You can now use Akismet to moderate the comments. (See: http://www.akismet.com/development/api/#comment-check)
+You can now use Akismet to moderate the comments. 
+See [http://www.akismet.com/development/api/#comment-check](http://www.akismet.com/development/api/#comment-check)
 
     akismet.checkSpam({ 
         user_ip: userip, 
@@ -35,7 +37,8 @@ You can now use Akismet to moderate the comments. (See: http://www.akismet.com/d
     });
 
 You can also send feedback to Akismet with `submitSpam` and `submitHam`. Their usage is the same as `checkSpam`.
-(See: http://www.akismet.com/development/api/#submit-spam, and http://www.akismet.com/development/api/#submit-ham)
+See [http://www.akismet.com/development/api/#submit-spam](http://www.akismet.com/development/api/#submit-spam)
+and [http://www.akismet.com/development/api/#submit-ham](http://www.akismet.com/development/api/#submit-ham)
 
 
 
