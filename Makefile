@@ -9,6 +9,7 @@ publish: dev
 
 test: dev
 	@test `which node` || echo 'You need to have node.js installed.'
+	@coffee -c -o lib spec/*.coffee
 	@node ./lib/test.js
 
 clean:
