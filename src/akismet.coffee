@@ -1,5 +1,6 @@
 http = require 'http'
 qs = require 'querystring'
+util = require 'util'
 
 
 class Akismet
@@ -14,6 +15,7 @@ class Akismet
     @port = options.port or 80
     @userAgent = options.userAgent or 'Generic Node.js/1.0.0 | Akismet 2.4.0'
     @charset = options.charset or 'utf-8'
+    @debug = options.debug or false
 
 
   # Verifies the key.
@@ -48,7 +50,11 @@ class Akismet
 
   # Posts a request to the Akismet API server.
   postRequest: (host, path, query, callback) ->
-    query = qs.stringgify query
+    query = qs.stringify query
+ 
+    if @debug
+      util.log 'Sending request: ' + host + ':' + @port
+      util.log 'Request body: ' + query
 
     client = http.createClient @port, host
     req = client.request 'POST', path, {
@@ -61,6 +67,8 @@ class Akismet
     req.end()
 
     req.on 'response', (res) ->
+      if @debug
+        util.log 'Response: ' + util.inspect res
       res.setEncoding 'utf-8'
       res.on 'data', (body) ->
         callback res.statusCode, res.headers, body
