@@ -1,5 +1,5 @@
 { "name" : "akismet"
-, "version": "0.0.1"
+, "version": "0.0.2"
 , "description": "Akismet library for node.js"
 , "author": "Ozgur Ozcitak <oozcitak@gmail.com>"
 , "licenses": [
