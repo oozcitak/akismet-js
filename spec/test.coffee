@@ -9,12 +9,15 @@ if not key or not blog
 
 akismet = require('./akismet').client({ blog: blog, apiKey: key })
 
-akismet.verifyKey (verified) ->
+akismet.verifyKey (err, verified) ->
+  if err then throw err
   util.log 'Verify Key: ' + if verified then 'PASS' else 'FAIL'
   
-akismet.checkSpam { user_ip: '192.168.0.1', comment_author: 'viagra-test-123', comment_content: 'spam!' }, (spam) ->
-  util.log 'Spam Check: ' + if spam then 'PASS' else 'FAIL'
+akismet.checkSpam { user_ip: '192.168.0.1', comment_author: 'viagra-test-123', comment_content: 'spam!' }, (err, spam) ->
+  if err then throw err
+  util.log 'Spam Check: ' + if spam is true then 'PASS' else 'FAIL'
 
-akismet.checkSpam { user_ip: '192.168.0.1', comment_author: 'anon_coward', comment_content: 'thoughtful comment' }, (spam) ->
-  util.log 'Ham Check: ' + if not spam then 'PASS' else 'FAIL'
+akismet.checkSpam { user_ip: '192.168.0.1', comment_author: 'anon_coward', comment_content: 'thoughtful comment' }, (err, spam) ->
+  if err then throw err
+  util.log 'Ham Check: ' + if spam is false then 'PASS' else 'FAIL'
 
