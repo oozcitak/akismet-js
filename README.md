@@ -8,13 +8,13 @@ Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.
 ### Usage:
 
 You need to [sign up](https://akismet.com/signup/) for an Akismet API key to use the API. Once you sign up, 
-it would be a good idea to verify your key. 
+it would be a good idea to verify your key.
 See [http://www.akismet.com/development/api/#verify-key](http://www.akismet.com/development/api/#verify-key)
 
     var util = require('util'),
         akismet = require('akismet').client({ blog: 'http://my.blog.com', apiKey: 'myakismetapikey123' });
 
-    akismet.verifyKey(function(verified, status, headers) {
+    akismet.verifyKey(function(err, verified, status, headers) {
       if (verified) 
         util.log('API key successfully verified.');
       else 
@@ -29,7 +29,7 @@ See [http://www.akismet.com/development/api/#comment-check](http://www.akismet.c
         permalink: 'http://www.my.blog.com/my-post',
         comment_author: 'spammer',
         comment_content: 'spamming your comments'
-      }, function(spam, status, headers) {
+      }, function(err, spam, status, headers) {
         if(spam)
           util.log('Spam caught.');
         else
