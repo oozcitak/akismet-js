@@ -1,4 +1,4 @@
-[Akismet](http://www.akismet.com/) for [node.js](http://nodejs.org/). 
+An [Akismet](http://www.akismet.com/) API client for [node.js](http://nodejs.org/). 
 Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
 
 ### Installation:
@@ -14,7 +14,7 @@ See [http://www.akismet.com/development/api/#verify-key](http://www.akismet.com/
     var util = require('util'),
         akismet = require('akismet').client({ blog: 'http://my.blog.com', apiKey: 'myakismetapikey123' });
 
-    akismet.verifyKey(function(err, verified, status, headers) {
+    akismet.verifyKey(function(err, verified) {
       if (verified) 
         util.log('API key successfully verified.');
       else 
@@ -25,11 +25,11 @@ You can now use Akismet to moderate the comments.
 See [http://www.akismet.com/development/api/#comment-check](http://www.akismet.com/development/api/#comment-check)
 
     akismet.checkSpam({ 
-        user_ip: userip, 
+        user_ip: '1.1.1.1', 
         permalink: 'http://www.my.blog.com/my-post',
         comment_author: 'spammer',
         comment_content: 'spamming your comments'
-      }, function(err, spam, status, headers) {
+      }, function(err, spam) {
         if(spam)
           util.log('Spam caught.');
         else
@@ -40,3 +40,11 @@ You can also send feedback to Akismet with `submitSpam` and `submitHam`. Their u
 See [http://www.akismet.com/development/api/#submit-spam](http://www.akismet.com/development/api/#submit-spam)
 and [http://www.akismet.com/development/api/#submit-ham](http://www.akismet.com/development/api/#submit-ham)
 
+    akismet.submitSpam({ 
+        user_ip: '1.1.1.1', 
+        permalink: 'http://www.my.blog.com/my-post',
+        comment_author: 'spammer',
+        comment_content: 'that was spam but you failed to catch me'
+      }, function(err) {
+        util.log('Spam reported to Akismet.');
+    });
