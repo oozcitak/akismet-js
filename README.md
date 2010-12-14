@@ -11,8 +11,10 @@ You need to [sign up](https://akismet.com/signup/) for an Akismet API key to use
 it would be a good idea to verify your key.
 See [http://www.akismet.com/development/api/#verify-key](http://www.akismet.com/development/api/#verify-key)
 
+```js
     var util = require('util'),
         akismet = require('akismet').client({ blog: 'http://my.blog.com', apiKey: 'myakismetapikey123' });
+```
 
     akismet.verifyKey(function(err, verified) {
       if (verified) 
