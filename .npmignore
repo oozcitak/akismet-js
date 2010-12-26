@@ -1,0 +1,5 @@
+.git*
+src/
+spec/
+Makefile
+README.*
