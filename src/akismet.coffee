@@ -110,6 +110,7 @@ class Akismet
 
 
 # Creates and returns a new Akismet client.
-module.exports =
+module.exports = {
   client: (options) -> new Akismet (options)
+}
 
