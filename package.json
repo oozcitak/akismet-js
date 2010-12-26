@@ -1,24 +1,24 @@
-{ "name" : "akismet"
-, "version": "0.0.2"
-, "description": "Akismet library for node.js"
-, "author": "Ozgur Ozcitak <oozcitak@gmail.com>"
-, "licenses": [
+{ 
+  "name" : "akismet",
+  "version": "0.0.3",
+  "description": "Akismet API client for node.js",
+  "author": "Ozgur Ozcitak <oozcitak@gmail.com> (http://ozgur.ozcitak.com)",
+  "licenses": [
     {
       "type": "MIT",
       "url": "http://opensource.org/licenses/mit-license.php" 
     } 
-  ]
-, "repositories": [
+  ],
+  "repositories": [
     {
       "type": "git",
       "url": "git://github.com/oozcitak/akismet-js.git" 
     } 
-  ]
-, "bugs": {
+  ],
+  "bugs": {
     "web": "http://github.com/oozcitak/akismet-js/issues"
-  }
-, "directories": {
+  },
+  "directories": {
     "lib": "./lib"
   }
-, "dependencies": {}
 }
