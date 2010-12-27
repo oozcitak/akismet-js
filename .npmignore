@@ -1,5 +1,5 @@
 .git*
-src/
-spec/
+src
+spec
 Makefile
 README.*
