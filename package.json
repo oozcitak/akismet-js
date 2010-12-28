@@ -1,6 +1,6 @@
 { 
   "name" : "akismet",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Akismet API client for node.js",
   "author": "Ozgur Ozcitak <oozcitak@gmail.com> (http://ozgur.ozcitak.com)",
   "licenses": [
