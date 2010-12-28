@@ -33,51 +33,51 @@ class Akismet
 
   # Verifies the key.
   #
-  # callback: err, isValid (true or false), statusCode, headers
+  # callback: err, isValid (true or false)
   verifyKey: (callback) ->
     callback or= () ->
     @keyClient or= http.createClient @port, @host
     @postRequest @keyClient, '/1.1/verify-key', { key: @apiKey, blog: @blog }, (err, status, headers, body) ->
-      callback err, (if status >= 200 and status < 300 and body is 'valid' then true else false), status, headers
+      callback err, (if status >= 200 and status < 300 and body is 'valid' then true else false)
 
 
   # Checks if a comment is spam
   #
   # options: key/value pair of options to send to the Akismet API
-  # callback: err, isSpam (true or false), statusCode, headers
+  # callback: err, isSpam (true or false)
   checkSpam: (options, callback) ->
     callback or= () ->
     options.blog = @blog
     options.user_agent = @userAgent
     @client or= http.createClient @port, @endPoint
     @postRequest @client, '/1.1/comment-check', options, (err, status, headers, body) ->
-      callback err, (if status >= 200 and status < 300 and body is 'true' then true else false), status, headers
+      callback err, (if status >= 200 and status < 300 and body is 'true' then true else false)
 
    
   # Marks a comment as spam
   #
   # options: key/value pair of options to send to the Akismet API
-  # callback: err, statusCode, headers
+  # callback: err
   submitSpam: (options, callback) ->
     callback or= () ->
     options.blog = @blog
     options.user_agent = @userAgent
     @client or= http.createClient @port, @endPoint
     @postRequest @client, '/1.1/submit-spam', options, (err, status, headers, body) ->
-      callback err, status, headers
+      callback err
 
 
   # Marks a comment as NOT spam
   #
   # options: key/value pair of options to send to the Akismet API
-  # callback: err, statusCode, headers
+  # callback: err
   submitHam: (options, callback) ->
     callback or= () ->
     options.blog = @blog
     options.user_agent = @userAgent
     @client or= http.createClient @port, @endPoint
     @postRequest @client, '/1.1/submit-ham', options, (err, status, headers, body) ->
-      callback err, status, headers
+      callback err
 
 
   # Posts a request to the Akismet API server.
