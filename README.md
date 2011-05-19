@@ -35,9 +35,9 @@ akismet.checkSpam({
     comment_content: 'spamming your comments'
   }, function(err, spam) {
     if(spam)
-      util.log('Spam caught.');
+      console.log('Spam caught.');
     else
-      util.log('Not spam');
+      console.log('Not spam');
 });
 ```
 
@@ -52,6 +52,6 @@ akismet.submitSpam({
     comment_author: 'spammer',
     comment_content: 'that was spam but you failed to catch me'
   }, function(err) {
-    util.log('Spam reported to Akismet.');
+    console.log('Spam reported to Akismet.');
 });
 ```
