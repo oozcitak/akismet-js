@@ -14,14 +14,13 @@ it would be a good idea to verify your key.
 See [http://www.akismet.com/development/api/#verify-key](http://www.akismet.com/development/api/#verify-key)
 
 ``` js
-var util = require('util'),
-    akismet = require('akismet').client({ blog: 'http://my.blog.com', apiKey: 'myakismetapikey123' });
+var akismet = require('akismet').client({ blog: 'http://my.blog.com', apiKey: 'myakismetapikey123' });
 
 akismet.verifyKey(function(err, verified) {
   if (verified) 
-    util.log('API key successfully verified.');
+    console.log('API key successfully verified.');
   else 
-    util.log('Unable to verify API key.');
+    console.log('Unable to verify API key.');
 });
 ```
       
