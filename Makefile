@@ -1,6 +1,6 @@
-test:
+test: release
 	@test `which coffee` || echo 'You need to have CoffeeScript installed.'
-	@coffee spec/test.coffee
+	@coffee test/test.coffee
 
 release:
 	@rm -fr lib/

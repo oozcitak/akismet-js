@@ -1,2 +1,4 @@
-/lib
-
+lib/
+node_modules/
+test/test.js
+*.log
