@@ -1,6 +1,8 @@
 An [Akismet](http://www.akismet.com/) API client for [node.js](http://nodejs.org/). 
 Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
 
+[![Build Status](https://secure.travis-ci.org/oozcitak/akismet-js)](http://travis-ci.org/oozcitak/akismet-js)
+
 ### Installation:
 
 ``` bash
