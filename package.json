@@ -1,6 +1,8 @@
 { 
   "name" : "akismet",
   "version": "0.0.6",
+  "keywords": "akismet comment spam",
+  "homepage": "https://github.com/oozcitak/akismet-js",
   "description": "Akismet API client for node.js",
   "author": "Ozgur Ozcitak <oozcitak@gmail.com> (http://ozgur.ozcitak.com)",
   "licenses": [
@@ -16,7 +18,7 @@
     } 
   ],
   "bugs": {
-    "url": "http://github.com/oozcitak/akismet-js/issues"
+    "url": "https://github.com/oozcitak/akismet-js/issues"
   },
   "directories": {
     "lib": "./lib"
@@ -24,5 +26,8 @@
   "main": "./lib/akismet",
   "engines": { 
     "node": ">=0.2.5" 
+  },
+  "scripts": {
+    "test": "make test"
   }
 }
