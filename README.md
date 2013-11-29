@@ -1,5 +1,6 @@
 An [Akismet](http://www.akismet.com/) API client for [node.js](http://nodejs.org/). 
-Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+
+[![NPM version](https://badge.fury.io/js/akismet.png)](http://badge.fury.io/js/akismet)
 
 ### Installation:
 
@@ -55,3 +56,7 @@ akismet.submitSpam({
     console.log('Spam reported to Akismet.');
 });
 ```
+
+### License:
+
+Akismet-js is licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
