@@ -23,11 +23,12 @@
     "node": ">=0.2.5" 
   },
   "devDependencies": {
-    "coffee-script": "1.1.x"
+    "coffee-script": "1.1.x",
+    "vows": ">=0.7.x"
   },
   "scripts": {
     "prepublish": "coffee -co lib/ src/*.coffee",
     "postpublish": "rm -rf lib",
-    "test": "coffee test/test.coffee"
+    "test": "vows test/*"
   }
 }
