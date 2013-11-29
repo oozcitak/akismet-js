@@ -1,6 +1,6 @@
 { 
   "name" : "akismet",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "keywords": ["akismet", "comment", "spam"],
   "homepage": "https://github.com/oozcitak/akismet-js",
   "description": "Akismet API client for node.js",
@@ -20,7 +20,7 @@
   },
   "main": "./lib/akismet",
   "engines": { 
-    "node": ">=0.2.5" 
+    "node": ">=0.8.0" 
   },
   "devDependencies": {
     "coffee-script": "1.1.x",
