@@ -4,8 +4,6 @@ akismet = require '../src/akismet.coffee'
 
 key = ''
 blog = ''
-key = 'f69278085823'
-blog = 'ozgur.ozcitak.com'
 
 if not key or not blog
     console.log 'Edit this file and enter your Akismet API key and blog URL.'
@@ -31,14 +29,6 @@ vows
             'returns true': (err, spam) ->
                 assert.isNull err
                 assert.isTrue spam
-
-        'Check not spam':
-            topic: () ->
-                client.checkSpam { user_ip: '192.168.0.1', comment_author: 'anon_coward', comment_content: 'thoughtful comment' }, @callback
-
-            'returns false': (err, spam) ->
-                assert.isNull err
-                assert.isFalse spam
 
     .export(module)
 
