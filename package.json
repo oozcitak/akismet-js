@@ -1,6 +1,6 @@
 { 
   "name" : "akismet",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "keywords": ["akismet", "comment", "spam"],
   "homepage": "https://github.com/oozcitak/akismet-js",
   "description": "Akismet API client for node.js",
