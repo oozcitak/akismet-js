@@ -1,6 +1,7 @@
 http = require 'http'
 qs = require 'querystring'
 util = require 'util'
+domain = require 'domain'
 
 
 class Akismet
@@ -86,20 +87,17 @@ class Akismet
         'content-length': Buffer.byteLength(query)
         'user-agent': @userAgent
 
-    req = http.request options, (res) ->
-      res.setEncoding 'utf8'
-      res.on 'data', (body) ->
-        console.log "Query: " + query
-        console.log util.inspect options
-        console.log "Body: " + body
-        callback null, res.statusCode, res.headers, body
-
-    req.on 'error', (err) ->
+    dom = domain.create()
+    dom.on 'error', (err) ->
       callback err
+    dom.run () ->
+      req = http.request options, (res) ->
+        res.setEncoding 'utf8'
+        res.on 'data', (body) ->
+          callback null, res.statusCode, res.headers, body
 
-
-    req.write query
-    req.end()
+      req.write query
+      req.end()
 
 
 # Creates and returns a new Akismet client.
