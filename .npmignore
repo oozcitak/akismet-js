@@ -1,6 +1,4 @@
 .git*
 src
 test
-Makefile
-README.*
 *.log
