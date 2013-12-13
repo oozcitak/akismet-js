@@ -57,6 +57,3 @@ akismet.submitSpam({
 });
 ```
 
-### License:
-
-Akismet-js is licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
