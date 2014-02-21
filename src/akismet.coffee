@@ -68,7 +68,7 @@ class Akismet
     callback or= () ->
     options.blog = @blog
     options.user_agent = @userAgent
-    @postRequest @endpoint, '/1.1/submit-ham', options, (err, status, headers, body) ->
+    @postRequest @endPoint, '/1.1/submit-ham', options, (err, status, headers, body) ->
       callback err
 
 
