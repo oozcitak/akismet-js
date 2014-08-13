@@ -9,6 +9,7 @@
   "homepage": "https://github.com/oozcitak/akismet-js",
   "description": "Akismet API client for node.js",
   "author": "Ozgur Ozcitak <oozcitak@gmail.com> (http://ozgur.ozcitak.com)",
+  "contributors" : [],
   "license": "MIT",
   "repository": {
     "type": "git",
