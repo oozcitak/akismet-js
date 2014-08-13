@@ -1,7 +1,11 @@
-{ 
-  "name" : "akismet",
-  "version": "0.0.12",
-  "keywords": ["akismet", "comment", "spam"],
+{
+  "name": "akismet",
+  "version": "0.0.13",
+  "keywords": [
+    "akismet",
+    "comment",
+    "spam"
+  ],
   "homepage": "https://github.com/oozcitak/akismet-js",
   "description": "Akismet API client for node.js",
   "author": "Ozgur Ozcitak <oozcitak@gmail.com> (http://ozgur.ozcitak.com)",
@@ -14,8 +18,8 @@
     "url": "https://github.com/oozcitak/akismet-js/issues"
   },
   "main": "./lib/akismet",
-  "engines": { 
-    "node": ">=0.8.0" 
+  "engines": {
+    "node": ">=0.8.0"
   },
   "devDependencies": {
     "coffee-script": "1.1.x",
