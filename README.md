@@ -13,7 +13,6 @@ npm install akismet
 
 You need to [sign up](https://akismet.com/signup/) for an Akismet API key to use the API. Once you sign up, 
 it would be a good idea to verify your key.
-See [http://www.akismet.com/development/api/#verify-key](http://www.akismet.com/development/api/#verify-key)
 
 ``` js
 var akismet = require('akismet').client({ blog: 'http://my.blog.com', apiKey: 'myakismetapikey123' });
@@ -26,8 +25,7 @@ akismet.verifyKey(function(err, verified) {
 });
 ```
       
-You can now use Akismet to moderate the comments. 
-See [http://www.akismet.com/development/api/#comment-check](http://www.akismet.com/development/api/#comment-check)
+You can now use Akismet to moderate your comments. 
 
 ``` js
 akismet.checkSpam({ 
@@ -44,8 +42,6 @@ akismet.checkSpam({
 ```
 
 You can also send feedback to Akismet with `submitSpam` and `submitHam`. Their usage is the same as `checkSpam`.
-See [http://www.akismet.com/development/api/#submit-spam](http://www.akismet.com/development/api/#submit-spam)
-and [http://www.akismet.com/development/api/#submit-ham](http://www.akismet.com/development/api/#submit-ham)
 
 ``` js
 akismet.submitSpam({ 
@@ -57,4 +53,5 @@ akismet.submitSpam({
     console.log('Spam reported to Akismet.');
 });
 ```
+See the [Akismet API documentation](http://www.akismet.com/development/api) for more information.
 
