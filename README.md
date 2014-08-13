@@ -1,6 +1,7 @@
 An [Akismet](http://www.akismet.com/) API client for [node.js](http://nodejs.org/). 
 
-[![NPM version](https://badge.fury.io/js/akismet.png)](http://badge.fury.io/js/akismet)
+[![NPM version](http://img.shields.io/npm/v/akismet.svg?style=flat-square)](https://npmjs.org/package/akismet)
+[![License](http://img.shields.io/npm/l/akismet.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 
 ### Installation:
 
