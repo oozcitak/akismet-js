@@ -5,12 +5,7 @@
   "homepage": "https://github.com/oozcitak/akismet-js",
   "description": "Akismet API client for node.js",
   "author": "Ozgur Ozcitak <oozcitak@gmail.com> (http://ozgur.ozcitak.com)",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://opensource.org/licenses/mit-license.php" 
-    } 
-  ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/oozcitak/akismet-js.git"
