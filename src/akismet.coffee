@@ -1,4 +1,5 @@
-http = require 'http'
+request = require 'request'
+url = require 'url'
 qs = require 'querystring'
 util = require 'util'
 domain = require 'domain'
@@ -75,30 +76,29 @@ class Akismet
   # Posts a request to the Akismet API server.
   postRequest: (hostname, path, query, callback) ->
 
-    query = qs.stringify query
+    requestUrl = url.format({
+      protocol: if @port is 443 then 'https' else 'http',
+      hostname: hostname,
+      pathname: path,
+      port: @port
+      })
  
     options =
-      'method': 'POST'
-      'hostname': hostname
-      'path': path
-      'port': @port
+      'url': requestUrl
+      'form': query
       'headers':
-        'content-type': 'application/x-www-form-urlencoded; charset=' + @charset
-        'content-length': Buffer.byteLength(query)
+        'content-type': 'charset=' + @charset
         'user-agent': @userAgent
 
     dom = domain.create()
     dom.on 'error', (err) ->
       callback err
     dom.run () ->
-      req = http.request options, (res) ->
-        res.setEncoding 'utf8'
-        res.on 'data', (body) ->
-          callback null, res.statusCode, res.headers, body
-
-      req.write query
-      req.end()
-
+      request.post options, (err, message, response) ->
+        if err
+          callback err
+        else
+          callback null, message.statusCode, message.headers, response
 
 # Creates and returns a new Akismet client.
 module.exports = {
