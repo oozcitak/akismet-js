@@ -1,4 +1,5 @@
-vows = require 'vows'
+# To run tests: mocha --compilers coffee:coffee-script/register
+
 assert = require 'assert'
 akismet = require '../src/akismet.coffee'
 
@@ -10,25 +11,56 @@ if not key or not blog
     process.exit 1
 
 client = akismet.client({ blog: blog, apiKey: key })
+invalidKeyClient = akismet.client( { blog: blog, apiKey: 'invalid-key'})
+invalidEndpointClient = akismet.client( {blog: blog, apiKey: key, host: '127.0.0.1'})
 
-vows
-    .describe('Akismet')
-    .addBatch
-        'Verify key':
-            topic: () ->
-                client.verifyKey @callback
+spamObject = 
+  user_ip: '192.168.0.1'
+  comment_author: 'viagra-test-123'
+  comment_content: 'spam!'
+  is_test: 1
 
-            'returns true': (err, verified) ->
-                assert.isNull err
-                assert.isTrue verified
+hamObject = 
+  user_ip: '192.168.0.1'
+  comment_author: 'A. Thor'
+  comment_content: 'Hello, this is normal text'
+  user_role: 'Administrator'
+  is_test: 1
 
-        'Check spam':
-            topic: () ->
-                client.checkSpam { user_ip: '192.168.0.1', comment_author: 'viagra-test-123', comment_content: 'spam!' }, @callback
+describe 'Akismet', () ->
+  describe 'Verify key', () ->
+    it 'should return true if the key valid', (done) ->
+      client.verifyKey (err, verified) ->
+        assert.equal err, null
+        assert verified
+        done()
 
-            'returns true': (err, spam) ->
-                assert.isNull err
-                assert.isTrue spam
+    it 'should return false if the key is invalid', (done) -> 
+      invalidKeyClient.verifyKey (err, verified) ->
+        assert.equal err, null
+        assert.equal verified, false
+        done()
 
-    .export(module)
+    it 'should generate an error if the host is not available', (done) ->
+      invalidEndpointClient.verifyKey (err, verified) ->
+        assert.notEqual err, null
+        done()
+
+  describe 'Check spam', () ->
+    it 'should return true if the text is spam', (done) ->
+      client.checkSpam spamObject, (err, spam) ->
+        assert.equal err, null
+        assert.equal spam, true
+        done()
+
+    it 'should return false if the text is not spam', (done) ->
+      client.checkSpam hamObject, (err, spam) ->
+        assert.equal err, null
+        assert.equal spam, false
+        done()
+
+    it 'should generate an error if the host is not available', (done) ->
+      invalidEndpointClient.checkSpam spamObject, (err, spam) ->
+        assert.notEqual err, null
+        done()
 
