@@ -22,9 +22,13 @@
   "engines": {
     "node": ">=0.8.0"
   },
+  "dependencies": {
+    "request": "2.x",
+    "domain": ">=0.0.1"
+  },
   "devDependencies": {
-    "coffee-script": "1.1.x",
-    "vows": ">=0.7.x"
+    "coffee-script": ">=1.7.0",
+    "mocha": ">=1.10.0"
   },
   "scripts": {
     "prepublish": "coffee -co lib/ src/*.coffee",

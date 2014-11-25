@@ -1,9 +1,6 @@
 request = require 'request'
 url = require 'url'
-qs = require 'querystring'
-util = require 'util'
 domain = require 'domain'
-
 
 class Akismet
  

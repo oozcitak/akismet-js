@@ -2,3 +2,5 @@
 src
 test
 *.log
+*.sublime-project
+*.sublime-workspace
