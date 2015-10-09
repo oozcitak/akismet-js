@@ -1,6 +1,6 @@
 {
   "name": "akismet",
-  "version": "0.0.13",
+  "version": "1.0.0",
   "keywords": [
     "akismet",
     "comment",
@@ -9,7 +9,7 @@
   "homepage": "https://github.com/oozcitak/akismet-js",
   "description": "Akismet API client for node.js",
   "author": "Ozgur Ozcitak <oozcitak@gmail.com> (http://ozgur.ozcitak.com)",
-  "contributors" : [],
+  "contributors": [],
   "license": "MIT",
   "repository": {
     "type": "git",
