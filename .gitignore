@@ -1,6 +1,3 @@
 lib/
 node_modules/
 *.log
-*.sublime-project
-*.sublime-workspace
-*.tgz
