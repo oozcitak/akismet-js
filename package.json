@@ -31,6 +31,7 @@
   },
   "scripts": {
     "prepublish": "coffee -co lib/ src/*.coffee",
-    "postpublish": "rm -rf lib"
+    "postpublish": "rm -rf lib",
+    "test": "mocha"
   }
 }

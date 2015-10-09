@@ -1,5 +1,3 @@
-# To run tests: mocha --compilers coffee:coffee-script/register
-
 assert = require 'assert'
 akismet = require '../src/akismet.coffee'
 
@@ -14,13 +12,13 @@ client = akismet.client({ blog: blog, apiKey: key })
 invalidKeyClient = akismet.client( { blog: blog, apiKey: 'invalid-key'})
 invalidEndpointClient = akismet.client( {blog: blog, apiKey: key, host: '127.0.0.1'})
 
-spamObject = 
+spamObject =
   user_ip: '192.168.0.1'
   comment_author: 'viagra-test-123'
   comment_content: 'spam!'
   is_test: 1
 
-hamObject = 
+hamObject =
   user_ip: '192.168.0.1'
   comment_author: 'A. Thor'
   comment_content: 'Hello, this is normal text'
@@ -35,7 +33,7 @@ describe 'Akismet', () ->
         assert verified
         done()
 
-    it 'should return false if the key is invalid', (done) -> 
+    it 'should return false if the key is invalid', (done) ->
       invalidKeyClient.verifyKey (err, verified) ->
         assert.equal err, null
         assert.equal verified, false
