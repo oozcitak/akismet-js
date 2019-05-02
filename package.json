@@ -24,7 +24,8 @@
     "node": ">=0.8.0"
   },
   "dependencies": {
-    "request": "2.x"
+    "request": "2.x",
+    "tsc": "^1.20150623.0"
   },
   "devDependencies": {
     "@types/jest": "*",
@@ -33,7 +34,7 @@
     "jest": "^24.7.1",
     "ts-jest": "*",
     "tslint": "*",
-    "typescript": "*"
+    "typescript": "^3.4.5"
   },
   "jest": {
     "transform": {
@@ -45,7 +46,7 @@
   "scripts": {
     "lint": "tslint -p . -t stylish 'src/**/*.{ts,tsx}'",
     "build": "tsc",
-    "prepublishOnly": "npm test && npm run build",
+    "prepublishOnly": "npm run build",
     "test": "npm run lint && jest",
     "cover": "jest --coverage"
   }
