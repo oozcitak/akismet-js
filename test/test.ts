@@ -1,4 +1,4 @@
-import { akismet } from '../src/index';
+import { client as akismetClient } from '../src/index';
 import { equal, notEqual } from 'assert';
 
 describe('Akismet', function () {
@@ -10,9 +10,9 @@ describe('Akismet', function () {
     process.exit(1);
   }
 
-  const client = akismet.client({ blog: blog, apiKey: key });
-  const invalidKeyClient = akismet.client({ blog: blog, apiKey: 'invalid-key' });
-  const invalidEndpointClient = akismet.client({ blog: blog, apiKey: key, host: '127.0.0.1' });
+  const client = akismetClient({ blog: blog, apiKey: key });
+  const invalidKeyClient = akismetClient({ blog: blog, apiKey: 'invalid-key' });
+  const invalidEndpointClient = akismetClient({ blog: blog, apiKey: key, host: '127.0.0.1' });
 
   const spamObject = {
     user_ip: '192.168.0.1',
