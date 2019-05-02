@@ -148,12 +148,12 @@ type VerifyKeyCallback = (err: string | null, isValid: boolean) => void;
 
 
 /**
- * Defines the callback for the `checkSpam` function.
+ * Defines the callback for the `checkComment` function.
  * 
  * @param err - Returns the error message returned from the server.
  * @param isSpam - Returns `true` if the content is spam; otherwise `false`.
  */
-type CheckSpamCallback = (err: string | null, isSpam: boolean) => void;
+type CheckCommentCallback = (err: string | null, isSpam: boolean) => void;
 
 
 /**
@@ -223,7 +223,7 @@ class AkismetClient {
    * @param options - options to send to the Akismet API
    * @param callback - the callback function
    */
-  checkComment(options: AkismetParameters, callback: CheckSpamCallback): void {
+  checkComment(options: AkismetParameters, callback: CheckCommentCallback): void {
     options.blog = this._blog;
     options.user_agent = this._userAgent;
     this._postRequest(this._endPoint, '/1.1/comment-check', options,
@@ -239,7 +239,7 @@ class AkismetClient {
    * @param options - options to send to the Akismet API
    * @param callback - the callback function
    */
-  checkSpam(options: AkismetParameters, callback: CheckSpamCallback): void {
+  checkSpam(options: AkismetParameters, callback: CheckCommentCallback): void {
     this.checkComment(options, callback);
   }
 
