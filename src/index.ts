@@ -179,13 +179,13 @@ type PostRequestCallback = (err: string | null, status: number, body: string) =>
  */
 export class AkismetClient {
 
-  _blog: string;
-  _apiKey: string;
-  _host: string;
-  _endPoint: string;
-  _port: number;
-  _userAgent: string;
-  _charSet: string;
+  private _blog: string;
+  private _apiKey: string;
+  private _host: string;
+  private _endPoint: string;
+  private _port: number;
+  private _userAgent: string;
+  private _charSet: string;
 
   /**
    * Initialize the Akismet client.
@@ -239,7 +239,7 @@ export class AkismetClient {
    * @param options - options to send to the Akismet API
    * @param callback - the callback function
    */
-  checkSpam(options: AkismetParameters, callback: CheckCommentCallback): void {
+  private checkSpam(options: AkismetParameters, callback: CheckCommentCallback): void {
     this.checkComment(options, callback);
   }
 
@@ -279,7 +279,7 @@ export class AkismetClient {
   /**
    * Posts a request to the Akismet API server.
    */
-  _postRequest(hostname: string, path: string,
+  private _postRequest(hostname: string, path: string,
     query: { [key: string]: any }, callback: PostRequestCallback): void {
 
     const requestUrl = formatURL({
