@@ -177,7 +177,7 @@ type PostRequestCallback = (err: string | null, status: number, body: string) =>
 /**
  * Represents the Akismet API client.
  */
-class AkismetClient {
+export class AkismetClient {
 
   _blog: string;
   _apiKey: string;
@@ -315,11 +315,11 @@ class AkismetClient {
 }
 
 
-export const akismet = {
-  /**
-   * Creates and returns a new Akismet client.
-   */
-  client(options: AkismetOptions): AkismetClient {
-    return new AkismetClient(options);
-  }
+/**
+ * Creates and returns a new Akismet client.
+ * 
+ * @param options - client settings
+ */
+export function client(options: AkismetOptions): AkismetClient {
+  return new AkismetClient(options);
 };
