@@ -24,8 +24,7 @@
     "node": ">=0.8.0"
   },
   "dependencies": {
-    "request": "2.x",
-    "tsc": "^1.20150623.0"
+    "request": "2.x"
   },
   "devDependencies": {
     "@types/jest": "*",
