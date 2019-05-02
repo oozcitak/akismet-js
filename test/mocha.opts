@@ -1,4 +1,0 @@
- --compilers coffee:coffee-script/register
- --ui tdd
- --reporter dot
- --recursive

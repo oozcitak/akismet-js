@@ -8,7 +8,7 @@
   ],
   "homepage": "https://github.com/oozcitak/akismet-js",
   "description": "Akismet API client for node.js",
-  "author": "Ozgur Ozcitak <oozcitak@gmail.com> (http://ozgur.ozcitak.com)",
+  "author": "Ozgur Ozcitak <oozcitak@gmail.com>",
   "contributors": [],
   "license": "MIT",
   "repository": {
@@ -18,7 +18,8 @@
   "bugs": {
     "url": "https://github.com/oozcitak/akismet-js/issues"
   },
-  "main": "./lib/akismet",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "engines": {
     "node": ">=0.8.0"
   },
@@ -26,12 +27,26 @@
     "request": "2.x"
   },
   "devDependencies": {
-    "coffee-script": ">=1.7.0",
-    "mocha": ">=1.10.0"
+    "@types/jest": "*",
+    "@types/node": "*",
+    "@types/request": "2.x",
+    "jest": "^24.7.1",
+    "ts-jest": "*",
+    "tslint": "*",
+    "typescript": "*"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "/test/.*\\.tsx?$",
+    "testEnvironment": "node"
   },
   "scripts": {
-    "prepublish": "coffee -co lib/ src/*.coffee",
-    "postpublish": "rm -rf lib",
-    "test": "mocha"
+    "lint": "tslint -p . -t stylish 'src/**/*.{ts,tsx}'",
+    "build": "tsc",
+    "prepublishOnly": "npm test && npm run build",
+    "test": "npm run lint && jest",
+    "cover": "jest --coverage"
   }
 }
