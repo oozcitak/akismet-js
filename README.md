@@ -6,7 +6,7 @@ An [Akismet](http://www.akismet.com/) API client for [node.js](http://nodejs.org
 ### Installation:
 
 ``` bash
-npm install akismet
+npm install --save akismet
 ```
 
 ### Usage:
@@ -28,7 +28,7 @@ akismet.verifyKey(function(err, verified) {
 You can now use Akismet to moderate your comments. 
 
 ``` js
-akismet.checkSpam({ 
+akismet.checkComment({ 
     user_ip: '1.1.1.1', 
     permalink: 'http://www.my.blog.com/my-post',
     comment_author: 'spammer',
@@ -41,7 +41,7 @@ akismet.checkSpam({
 });
 ```
 
-You can also send feedback to Akismet with `submitSpam` and `submitHam`. Their usage is the same as `checkSpam`.
+You can also send feedback to Akismet with `submitSpam` and `submitHam`. Their usage is the same as `checkComment`.
 
 ``` js
 akismet.submitSpam({ 
