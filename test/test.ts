@@ -1,36 +1,35 @@
-import { client as akismetClient } from '../src/index';
-import { equal, notEqual } from 'assert';
+import { equal, notEqual } from "assert";
+import { client as akismetClient } from "../src/index";
 
-describe('Akismet', () => {
-  const key = '';
-  const blog = '';
+describe("Akismet", () => {
+  const apiKey = "";
+  const blog = "";
 
-  if (!key || !blog) {
-    console.log('Edit this file and enter your Akismet API key and blog URL.');
-    process.exit(1);
+  if (!apiKey || !blog) {
+    throw new Error("Please enter your Akismet API key and blog URL.");
   }
 
-  const client = akismetClient({ blog: blog, apiKey: key });
-  const invalidKeyClient = akismetClient({ blog: blog, apiKey: 'invalid-key' });
-  const invalidEndpointClient = akismetClient({ blog: blog, apiKey: key, host: '127.0.0.1' });
+  const client = akismetClient({ apiKey, blog  });
+  const invalidKeyClient = akismetClient({ blog, apiKey: "invalid-key" });
+  const invalidHostClient = akismetClient({ apiKey, blog, host: "1.1.1.1" });
 
   const spamObject = {
-    user_ip: '192.168.0.1',
-    comment_author: 'viagra-test-123',
-    comment_content: 'spam!',
+    comment_author: "viagra-test-123",
+    comment_content: "spam!",
     is_test: 1,
+    user_ip: "192.168.0.1"
   };
 
   const hamObject = {
-    user_ip: '192.168.0.1',
-    comment_author: 'A. Thor',
-    comment_content: 'Hello, this is normal text',
-    user_role: 'Administrator',
-    is_test: 1
+    comment_author: "A. Thor",
+    comment_content: "Hello, this is normal text",
+    is_test: 1,
+    user_ip: "192.168.0.1",
+    user_role: "Administrator"
   };
 
-  describe('Verify key', () => {
-    it('should return true if the key is valid', (done) => {
+  describe("Verify key", () => {
+    it("should return true if the key is valid", (done) => {
       client.verifyKey((err, verified) => {
         equal(err, null);
         equal(verified, true);
@@ -38,7 +37,7 @@ describe('Akismet', () => {
       });
     });
 
-    it('should return false if the key is invalid', (done) => {
+    it("should return false if the key is invalid", (done) => {
       invalidKeyClient.verifyKey((err, verified) => {
         equal(err, null);
         equal(verified, false);
@@ -46,8 +45,8 @@ describe('Akismet', () => {
       });
     });
 
-    it('should generate an error if the host is not available', (done) => {
-      invalidEndpointClient.verifyKey((err, verified) => {
+    it("should generate an error if the host is not available", (done) => {
+      invalidHostClient.verifyKey((err, verified) => {
         notEqual(err, null);
         done();
       });
@@ -55,8 +54,8 @@ describe('Akismet', () => {
 
   });
 
-  describe('Check comment', () => {
-    it('should return true if the text is spam', (done) => {
+  describe("Check comment", () => {
+    it("should return true if the text is spam", (done) => {
       client.checkComment(spamObject, (err, spam) => {
         equal(err, null);
         equal(spam, true);
@@ -64,7 +63,7 @@ describe('Akismet', () => {
       });
     });
 
-    it('should return false if the text is not spam', (done) => {
+    it("should return false if the text is not spam", (done) => {
       client.checkComment(hamObject, (err, spam) => {
         equal(err, null);
         equal(spam, false);
@@ -72,8 +71,8 @@ describe('Akismet', () => {
       });
     });
 
-    it('should generate an error if the host is not available', (done) => {
-      invalidEndpointClient.checkComment(spamObject, (err, spam) => {
+    it("should generate an error if the host is not available", (done) => {
+      invalidHostClient.checkComment(spamObject, (err, spam) => {
         notEqual(err, null);
         done();
       });
