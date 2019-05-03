@@ -1,7 +1,7 @@
 import { client as akismetClient } from '../src/index';
 import { equal, notEqual } from 'assert';
 
-describe('Akismet', function () {
+describe('Akismet', () => {
   const key = '';
   const blog = '';
 
@@ -29,25 +29,25 @@ describe('Akismet', function () {
     is_test: 1
   };
 
-  describe('Verify key', function () {
-    it('should return true if the key is valid', function (done) {
-      client.verifyKey(function (err, verified) {
+  describe('Verify key', () => {
+    it('should return true if the key is valid', (done) => {
+      client.verifyKey((err, verified) => {
         equal(err, null);
         equal(verified, true);
         done();
       });
     });
 
-    it('should return false if the key is invalid', function (done) {
-      invalidKeyClient.verifyKey(function (err, verified) {
+    it('should return false if the key is invalid', (done) => {
+      invalidKeyClient.verifyKey((err, verified) => {
         equal(err, null);
         equal(verified, false);
         done();
       });
     });
 
-    it('should generate an error if the host is not available', function (done) {
-      invalidEndpointClient.verifyKey(function (err, verified) {
+    it('should generate an error if the host is not available', (done) => {
+      invalidEndpointClient.verifyKey((err, verified) => {
         notEqual(err, null);
         done();
       });
@@ -55,25 +55,25 @@ describe('Akismet', function () {
 
   });
 
-  describe('Check comment', function () {
-    it('should return true if the text is spam', function (done) {
-      client.checkComment(spamObject, function (err, spam) {
+  describe('Check comment', () => {
+    it('should return true if the text is spam', (done) => {
+      client.checkComment(spamObject, (err, spam) => {
         equal(err, null);
         equal(spam, true);
         done();
       });
     });
 
-    it('should return false if the text is not spam', function (done) {
-      client.checkComment(hamObject, function (err, spam) {
+    it('should return false if the text is not spam', (done) => {
+      client.checkComment(hamObject, (err, spam) => {
         equal(err, null);
         equal(spam, false);
         done();
       });
     });
 
-    it('should generate an error if the host is not available', function (done) {
-      invalidEndpointClient.checkComment(spamObject, function (err, spam) {
+    it('should generate an error if the host is not available', (done) => {
+      invalidEndpointClient.checkComment(spamObject, (err, spam) => {
         notEqual(err, null);
         done();
       });

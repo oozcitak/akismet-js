@@ -43,7 +43,7 @@
     "testEnvironment": "node"
   },
   "scripts": {
-    "lint": "tslint -p . -t stylish 'src/**/*.{ts,tsx}'",
+    "lint": "tslint -c tslint.json -t stylish 'src/**/*.{ts,tsx}'",
     "build": "tsc",
     "prepublishOnly": "npm run build",
     "test": "npm run lint && jest",

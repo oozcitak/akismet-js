@@ -1,6 +1,6 @@
-import { post as postRequest, Response } from 'request';
-import { format as formatURL } from 'url';
-import { create as createDomain } from 'domain';
+import { create as createDomain } from "domain";
+import { post as postRequest, Response } from "request";
+import { format as formatURL } from "url";
 
 /**
  * Defines the settings for the Akismet client.
@@ -8,12 +8,14 @@ import { create as createDomain } from 'domain';
 interface AkismetOptions {
   /**
    * The front page or home URL of the instance making the request. For a blog 
-   * or wiki this would be the front page. Note: Must be a full URI, including http://.
+   * or wiki this would be the front page. 
+   * 
+   * _Note:_ Must be a full URI, including `http://`.
    */
   blog?: string;
   /** 
    * Akismet API key 
-   * */
+   */
   apiKey: string;
   /** 
    * Akismet API URL, defaults to `rest.akismet.com` 
@@ -45,7 +47,9 @@ interface AkismetOptions {
 interface AkismetParameters {
   /**
    * The front page or home URL of the instance making the request. For a blog 
-   * or wiki this would be the front page. Note: Must be a full URI, including http://.
+   * or wiki this would be the front page.
+   * 
+   * _Note:_ Must be a full URI, including `http://`.
    */
   blog?: string;
   /**
@@ -54,11 +58,12 @@ interface AkismetParameters {
   user_ip: string;
   /**
    * User agent string of the web browser submitting the comment - typically the
-   * HTTP_USER_AGENT cgi variable. Not to be confused with the user agent of your Akismet library.
+   * `HTTP_USER_AGENT` cgi variable. Not to be confused with the user agent of
+   * your Akismet library.
    */
   user_agent?: string;
   /**
-   * The content of the HTTP_REFERER header should be sent here.
+   * The content of the `HTTP_REFERER` header should be sent here.
    * (note spelling of `referrer`).
    */
   referrer?: string;
@@ -68,13 +73,13 @@ interface AkismetParameters {
   permalink?: string;
   /**
    * A string that describes the type of content being sent. Examples:
-   * - comment: A blog comment.
-   * - forum-post: A top-level forum post.
-   * - reply: A reply to a top-level forum post.
-   * - blog-post: A blog post.
-   * - contact-form: A contact form or feedback form submission.
-   * - signup: A new user account.
-   * - message: A message sent between just a few users.
+   * - `comment`: A blog comment.
+   * - `forum-post`: A top-level forum post.
+   * - `reply`: A reply to a top-level forum post.
+   * - `blog-post`: A blog post.
+   * - `contact-form`: A contact form or feedback form submission.
+   * - `signup`: A new user account.
+   * - `message`: A message sent between just a few users.
    * 
    * You may send a value not listed above if none of them accurately describe
    * your content. This is further explained here:
@@ -113,7 +118,7 @@ interface AkismetParameters {
    */
   blog_lang?: string;
   /**
-   * The character encoding for the form values included in comment_* parameters,
+   * The character encoding for the form values included in `comment_*` parameters,
    * such as `UTF-8` or `ISO-8859-1`.
    */
   blog_charset?: string;
@@ -141,8 +146,8 @@ interface AkismetParameters {
 /**
  * Defines the callback for the `verifyKey` function.
  * 
- * @param err - Returns the error message returned from the server.
- * @param isValid - Returns `true` if the API key id valid; otherwise `false`.
+ * @param err - error message returned from the server.
+ * @param isValid - `true` if the API key is valid; otherwise `false`.
  */
 type VerifyKeyCallback = (err: string | null, isValid: boolean) => void;
 
@@ -150,8 +155,8 @@ type VerifyKeyCallback = (err: string | null, isValid: boolean) => void;
 /**
  * Defines the callback for the `checkComment` function.
  * 
- * @param err - Returns the error message returned from the server.
- * @param isSpam - Returns `true` if the content is spam; otherwise `false`.
+ * @param err - error message returned from the server.
+ * @param isSpam - `true` if the content is spam; otherwise `false`.
  */
 type CheckCommentCallback = (err: string | null, isSpam: boolean) => void;
 
@@ -159,7 +164,7 @@ type CheckCommentCallback = (err: string | null, isSpam: boolean) => void;
 /**
  * Defines the callback for the `submitSpam` and `submitHam` functions.
  * 
- * @param err - Returns the error message returned from the server.
+ * @param err - error message returned from the server.
  */
 type SubmitCallback = (err: string | null) => void;
 
@@ -167,9 +172,9 @@ type SubmitCallback = (err: string | null) => void;
 /**
  * Defines the callback for the `_postRequest` function.
  * 
- * @param err - Returns the error message returned from the server.
- * @param status - Returns the HTTP status code.
- * @param body - Returns the response body.
+ * @param err - error message returned from the server.
+ * @param status - HTTP status code.
+ * @param body - response body.
  */
 type PostRequestCallback = (err: string | null, status: number, body: string) => void;
 
@@ -193,26 +198,26 @@ export class AkismetClient {
    * @param options - client settings
    */
   constructor(options: AkismetOptions) {
-    this._blog = options.blog || '';
+    this._blog = options.blog || "";
     this._apiKey = options.apiKey;
-    this._host = options.host || 'rest.akismet.com';
-    this._endPoint = options.endPoint || (this._apiKey + '.' + this._host);
+    this._host = options.host || "rest.akismet.com";
+    this._endPoint = options.endPoint || (this._apiKey + "." + this._host);
     this._port = options.port || 80;
-    this._userAgent = options.userAgent || 'Generic Node.js/1.0.0 | Akismet/3.1.7';
-    this._charSet = options.charSet || 'utf-8';
+    this._userAgent = options.userAgent || "Generic Node.js/1.0.0 | Akismet/3.1.7";
+    this._charSet = options.charSet || "utf-8";
   }
 
 
   /**
    * Verifies the API key.
    * 
-   * @param callback - the callback function
+   * @param callback - callback function
    */
-  verifyKey(callback: VerifyKeyCallback): void {
+  public verifyKey(callback: VerifyKeyCallback): void {
     const options = { key: this._apiKey, blog: this._blog };
-    this._postRequest(this._host, '/1.1/verify-key', options,
-      function (err: string | null, status: number, body: string) {
-        callback(err, status >= 200 && status < 300 && body === 'valid');
+    this._postRequest(this._host, "/1.1/verify-key", options,
+      (err: string | null, status: number, body: string) => {
+        callback(err, status >= 200 && status < 300 && body === "valid");
       });
   }
 
@@ -221,40 +226,29 @@ export class AkismetClient {
    * Checks if a comment is spam.
    * 
    * @param options - options to send to the Akismet API
-   * @param callback - the callback function
+   * @param callback - callback function
    */
-  checkComment(options: AkismetParameters, callback: CheckCommentCallback): void {
+  public checkComment(options: AkismetParameters, callback: CheckCommentCallback): void {
     options.blog = this._blog;
     options.user_agent = this._userAgent;
-    this._postRequest(this._endPoint, '/1.1/comment-check', options,
-      function (err: string | null, status: number, body: string) {
-        callback(err, status >= 200 && status < 300 && body === 'true');
+    this._postRequest(this._endPoint, "/1.1/comment-check", options,
+      (err: string | null, status: number, body: string) => {
+        callback(err, status >= 200 && status < 300 && body === "true");
       });
   }
 
 
   /**
-   * Historic alias of `checkComment`.
-   * 
-   * @param options - options to send to the Akismet API
-   * @param callback - the callback function
-   */
-  private checkSpam(options: AkismetParameters, callback: CheckCommentCallback): void {
-    this.checkComment(options, callback);
-  }
-
-  
-  /**
    * Marks a comment as spam and reports to the Akismet API.
    * 
    * @param options - options to send to the Akismet API
-   * @param callback - the callback function
+   * @param callback - callback function
    */
-  submitSpam(options: AkismetParameters, callback: SubmitCallback): void {
+  public submitSpam(options: AkismetParameters, callback: SubmitCallback): void {
     options.blog = this._blog;
     options.user_agent = this._userAgent;
-    this._postRequest(this._endPoint, '/1.1/submit-spam', options,
-      function (err: string | null, status: number, body: string) {
+    this._postRequest(this._endPoint, "/1.1/submit-spam", options,
+      (err: string | null, status: number, body: string) => {
         callback(err);
       });
   }
@@ -264,13 +258,13 @@ export class AkismetClient {
    * Marks a comment as NOT spam and reports to the Akismet API.
    * 
    * @param options - options to send to the Akismet API
-   * @param callback - the callback function
+   * @param callback - callback function
    */
-  submitHam(options: AkismetParameters, callback: SubmitCallback): void {
+  public submitHam(options: AkismetParameters, callback: SubmitCallback): void {
     options.blog = this._blog;
     options.user_agent = this._userAgent;
-    this._postRequest(this._endPoint, '/1.1/submit-ham', options,
-      function (err: string | null, status: number, body: string) {
+    this._postRequest(this._endPoint, "/1.1/submit-ham", options,
+      (err: string | null, status: number, body: string) => {
         callback(err);
       });
   }
@@ -283,32 +277,44 @@ export class AkismetClient {
     query: { [key: string]: any }, callback: PostRequestCallback): void {
 
     const requestUrl = formatURL({
-      protocol: this._port === 443 ? 'https' : 'http',
+      protocol: this._port === 443 ? "https" : "http",
       hostname: hostname,
       pathname: path,
       port: this._port
     });
 
     const options = {
-      'url': requestUrl,
-      'form': query,
-      'headers': {
-        'content-type': 'charset=' + this._charSet,
-        'user-agent': this._userAgent
+      "url": requestUrl,
+      "form": query,
+      "headers": {
+        "content-type": "charset=" + this._charSet,
+        "user-agent": this._userAgent
       }
     };
 
     const dom = createDomain();
-    dom.on('error', (err) => callback(err, 0, ''));
+    dom.on("error", (err) => callback(err, 0, ""));
 
-    dom.run(function () {
-      postRequest(options, function (err: any, response: Response, body: any) {
-        if (err)
-          callback(err, 0, '');
-        else
+    dom.run(() => {
+      postRequest(options, (err: any, response: Response, body: any) => {
+        if (err) {
+          callback(err, 0, "");
+        } else {
           callback(null, response.statusCode, body);
+        }
       });
     });
+  }
+
+
+  /**
+   * Historic alias of `checkComment`.
+   * 
+   * @param options - options to send to the Akismet API
+   * @param callback - callback function
+   */
+  private checkSpam(options: AkismetParameters, callback: CheckCommentCallback): void {
+    this.checkComment(options, callback);
   }
 
 
@@ -322,4 +328,4 @@ export class AkismetClient {
  */
 export function client(options: AkismetOptions): AkismetClient {
   return new AkismetClient(options);
-};
+}
