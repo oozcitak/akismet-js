@@ -53,5 +53,5 @@ akismet.submitSpam({
     console.log('Spam reported to Akismet.');
 });
 ```
-See the [Akismet API documentation](http://www.akismet.com/development/api) for more information.
+See the [wiki](https://github.com/oozcitak/akismet-js/wiki) and [Akismet API documentation](http://www.akismet.com/development/api) for more information.
 
