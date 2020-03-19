@@ -46,7 +46,7 @@
     "lint": "tslint -c tslint.json -t stylish 'src/**/*.{ts,tsx}'",
     "build": "tsc",
     "prepublishOnly": "npm run build",
-    "test": "npm run lint && jest",
+    "test": "tsc && jest",
     "cover": "jest --coverage"
   }
 }

@@ -3,6 +3,11 @@ An [Akismet](http://www.akismet.com/) API client for [node.js](http://nodejs.org
 [![NPM version](http://img.shields.io/npm/v/akismet.svg?style=flat-square)](https://npmjs.org/package/akismet)
 [![License](http://img.shields.io/npm/l/akismet.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 
+[![Travis Build Status](https://img.shields.io/travis/oozcitak/akismet-js?logo=travis&style=flat-square)](http://travis-ci.org/oozcitak/akismet-js)
+[![AppVeyor Build status](https://img.shields.io/appveyor/ci/oozcitak/akismet-js?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/oozcitak/akismet-js)
+[![Dev Dependency Status](http://img.shields.io/david/dev/oozcitak/akismet-js.svg?style=flat-square)](https://david-dm.org/oozcitak/akismet-js)
+[![Code Coverage](https://img.shields.io/codecov/c/github/oozcitak/akismet-js?logo=codecov&style=flat-square)](https://codecov.io/gh/oozcitak/akismet-js)
+
 ### Installation:
 
 ``` bash

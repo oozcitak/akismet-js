@@ -2,8 +2,8 @@ import { equal, notEqual } from "assert";
 import { client as akismetClient } from "../src/index";
 
 describe("Akismet", () => {
-  const apiKey = "";
-  const blog = "";
+  const apiKey = process.env.AKISMET_APIKEY;
+  const blog = process.env.AKISMET_BLOGURL;
 
   if (!apiKey || !blog) {
     throw new Error("Please enter your Akismet API key and blog URL.");
