@@ -229,8 +229,8 @@ export class AkismetClient {
    * @param callback - callback function
    */
   public checkComment(options: AkismetParameters, callback: CheckCommentCallback): void {
-    options.blog = this._blog;
-    options.user_agent = this._userAgent;
+    options.blog = options.blog || this._blog;
+    options.user_agent = options.user_agent || this._userAgent;
     this._postRequest(this._endPoint, "/1.1/comment-check", options,
       (err: string | null, status: number, body: string) => {
         callback(err, status >= 200 && status < 300 && body === "true");
@@ -245,8 +245,8 @@ export class AkismetClient {
    * @param callback - callback function
    */
   public submitSpam(options: AkismetParameters, callback: SubmitCallback): void {
-    options.blog = this._blog;
-    options.user_agent = this._userAgent;
+    options.blog = options.blog || this._blog;
+    options.user_agent = options.user_agent || this._userAgent;
     this._postRequest(this._endPoint, "/1.1/submit-spam", options,
       (err: string | null, status: number, body: string) => {
         callback(err);
@@ -261,8 +261,8 @@ export class AkismetClient {
    * @param callback - callback function
    */
   public submitHam(options: AkismetParameters, callback: SubmitCallback): void {
-    options.blog = this._blog;
-    options.user_agent = this._userAgent;
+    options.blog = options.blog || this._blog;
+    options.user_agent = options.user_agent || this._userAgent;
     this._postRequest(this._endPoint, "/1.1/submit-ham", options,
       (err: string | null, status: number, body: string) => {
         callback(err);
@@ -293,7 +293,7 @@ export class AkismetClient {
     };
 
     const dom = createDomain();
-    dom.on("error", (err) => callback(err, 0, ""));
+    dom.on("error", (err: any) => callback(err, 0, ""));
 
     dom.run(() => {
       postRequest(options, (err: any, response: Response, body: any) => {
@@ -316,7 +316,6 @@ export class AkismetClient {
   private checkSpam(options: AkismetParameters, callback: CheckCommentCallback): void {
     this.checkComment(options, callback);
   }
-
 
 }
 
