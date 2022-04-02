@@ -3,3 +3,5 @@ src
 test
 tsconfig.json
 *.log
+.env
+coverage/
