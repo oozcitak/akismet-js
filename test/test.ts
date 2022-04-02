@@ -1,7 +1,9 @@
 import { equal, notEqual } from "assert";
 import { client as akismetClient } from "../src/index";
+import { config as dotenvConfig } from 'dotenv';
 
 describe("Akismet", () => {
+  dotenvConfig();
   const apiKey = process.env.AKISMET_APIKEY;
   const blog = process.env.AKISMET_BLOGURL;
 
