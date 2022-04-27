@@ -215,7 +215,7 @@ export class AkismetClient {
    */
   public verifyKey(callback: VerifyKeyCallback): void {
     const options = { key: this._apiKey, blog: this._blog };
-    this._postRequest(this._host, "/1.1/verify-key", options,
+    this._postRequest(this._endPoint, "/1.1/verify-key", options,
       (err: string | null, status: number, body: string) => {
         callback(err, status >= 200 && status < 300 && body === "valid");
       });
