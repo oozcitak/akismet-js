@@ -1,6 +1,6 @@
 {
   "name": "akismet",
-  "version": "2.0.7",
+  "version": "2.1.0",
   "keywords": [
     "akismet",
     "comment",
@@ -24,17 +24,17 @@
     "node": ">=0.8.0"
   },
   "dependencies": {
-    "request": "2.x"
+    "axios": "^0.27.1",
+    "qs": "^6.10.3"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
-    "@types/node": "^17.0.23",
-    "@types/request": "^2.48.8",
+    "@types/node": "^8.10.66",
+    "@types/qs": "^6.9.7",
+    "dotenv": "^16.0.0",
     "jest": "^27.5.1",
     "ts-jest": "^27.1.4",
-    "tslint": "^6.1.3",
-    "typescript": "^4.6.3",
-    "dotenv": "16.0.0"
+    "typescript": "^4.6.3"
   },
   "jest": {
     "transform": {
@@ -44,9 +44,8 @@
     "testEnvironment": "node"
   },
   "scripts": {
-    "lint": "tslint -c tslint.json -t stylish 'src/**/*.{ts,tsx}'",
-    "build": "tsc",
+    "build": "rm -Rf {lib,coverage} && tsc",
     "prepublishOnly": "npm run build",
-    "test": "tsc && jest --coverage"
+    "test": "jest --coverage"
   }
 }
