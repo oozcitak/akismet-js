@@ -44,8 +44,8 @@
     "testEnvironment": "node"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rm -Rf {lib,coverage} && tsc",
     "prepublishOnly": "npm run build",
-    "test": "tsc && jest --coverage"
+    "test": "jest --coverage"
   }
 }
